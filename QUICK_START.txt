@@ -1,0 +1,23 @@
+SCHOOLYARD BUDDIES MULTIPLAYER — STAGE 7.0.1
+
+SCHOOLYARD BUDDIES — CLOUDFLARE MULTIPLAYER QUICK START
+
+WINDOWS:
+1. Open PowerShell in this folder.
+2. Run:
+   Set-ExecutionPolicy -Scope Process Bypass
+   .\scripts\deploy-windows.ps1
+3. Complete Cloudflare login.
+4. Open the printed *.workers.dev URL.
+
+LINUX / ZORIN:
+1. Open Terminal in this folder.
+2. Run:
+   chmod +x scripts/*.sh
+   ./scripts/deploy-linux.sh
+
+TEST:
+- Open the deployed URL on two browsers/devices.
+- Use the same room name.
+- Press Multiplayer > Connect.
+- Enter the world and move.

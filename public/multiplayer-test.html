@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Schoolyard Multiplayer Connection Test</title>
+<style>
+body{font:16px system-ui;background:#0b2b52;color:#fff6e4;margin:0;padding:24px}main{max-width:760px;margin:auto;background:#123f78;border:4px solid #071827;border-radius:24px;padding:24px;box-shadow:0 8px 0 #071827}label{display:block;margin:12px 0 5px;font-weight:800}input,button{font:inherit;min-height:48px;border-radius:12px;border:3px solid #071827;padding:8px 12px}input{width:100%;box-sizing:border-box}button{font-weight:900;background:#ffc93d;color:#082b56;cursor:pointer;margin:12px 6px 12px 0}pre{height:300px;overflow:auto;background:#061f42;border:3px solid #62d8ff;border-radius:16px;padding:14px;white-space:pre-wrap}.ok{color:#6effa9}.bad{color:#ff9e9e}
+</style>
+</head><body><main><h1>Schoolyard Multiplayer Test</h1><p>Open this page in two tabs, use the same room, and connect.</p><label>WebSocket URL</label><input id="url"><label>Room</label><input id="room" value="schoolyard-main"><label>Player name</label><input id="name" value="Tester"><button id="connect">Connect</button><button id="send">Send test position</button><button id="close">Disconnect</button><pre id="log"></pre></main><script>
+let ws;const q=id=>document.getElementById(id),log=(text,cls='')=>{q('log').innerHTML+=`<span class="${cls}">${new Date().toLocaleTimeString()} ${text}</span>\n`;q('log').scrollTop=q('log').scrollHeight};q('url').value=`${location.protocol==='https:'?'wss':'ws'}://${location.host}/ws`;q('connect').onclick=()=>{const u=new URL(q('url').value);u.searchParams.set('room',q('room').value);ws=new WebSocket(u);ws.onopen=()=>{log('Connected','ok');ws.send(JSON.stringify({type:'join',payload:{name:q('name').value,appearance:{characterType:'male'},state:{x:0,y:0,z:0,rotationY:0,action:'idle'}}}))};ws.onmessage=e=>log('← '+e.data);ws.onclose=e=>log(`Closed ${e.code}`,'bad');ws.onerror=()=>log('Connection error','bad')};q('send').onclick=()=>ws?.send(JSON.stringify({type:'player_state',payload:{x:Math.random()*10,y:0,z:Math.random()*10,rotationY:0,action:'walk'}}));q('close').onclick=()=>ws?.close(1000,'Test complete');
+</script></body></html>

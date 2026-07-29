@@ -1,0 +1,15 @@
+{
+  "name": "schoolyard-buddies-cloudflare-multiplayer",
+  "version": "7.0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "check": "node --check src/index.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.102.0"
+  }
+}
