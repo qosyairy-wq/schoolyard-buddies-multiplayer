@@ -16,12 +16,12 @@
       }
     ]
   },
-  "migrations": [
-    {
-      "tag": "v1",
-      "new_sqlite_classes": ["GameRoom"]
+  "exports": {
+    "GameRoom": {
+      "type": "durable-object",
+      "storage": "sqlite"
     }
-  ],
+  },
   "observability": {
     "enabled": true
   }
