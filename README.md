@@ -1,6 +1,6 @@
 # Schoolyard Buddies — Cloudflare Multiplayer Test
 
-Stage 7.0.1 adds real-time multiplayer using Cloudflare Workers, Durable Objects and WebSockets.
+Stage 7.0.0 adds real-time multiplayer using Cloudflare Workers, Durable Objects and WebSockets.
 
 ## Included
 
@@ -19,8 +19,3 @@ npm run deploy
 ```
 
 After deployment, open the printed `https://...workers.dev` URL on two browsers or devices, choose the same room, and press Connect.
-
-
-## Stage 7.0.1
-- Updated multiplayer HUD contrast and readability.
-- `public/index.html` contains the corrected multiplayer game client.

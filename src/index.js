@@ -58,6 +58,16 @@ function sanitizeAppearance(raw) {
   return output;
 }
 
+function sanitizeProfile(raw) {
+  const source = raw && typeof raw === "object" ? raw : {};
+  return {
+    achievementLevel: Math.max(1, Math.min(99, Math.floor(Number(source.achievementLevel) || 1))),
+    achievementCount: Math.max(0, Math.min(999, Math.floor(Number(source.achievementCount) || 0))),
+    achievementTitle: cleanText(source.achievementTitle || "New Student", 36) || "New Student",
+    achievementDetail: cleanText(source.achievementDetail || "", 52)
+  };
+}
+
 function defaultSharedState() {
   const now = new Date();
   return {
@@ -132,6 +142,7 @@ export class GameRoom extends DurableObject {
       joined: false,
       name: "Student",
       appearance: {},
+      profile: sanitizeProfile({}),
       state: sanitizeState({}),
       lastStateAt: 0,
       lastChatAt: 0,
@@ -172,6 +183,7 @@ export class GameRoom extends DurableObject {
       id: session.id,
       name: session.name,
       appearance: session.appearance,
+      profile: session.profile || sanitizeProfile({}),
       state: session.state
     };
   }
@@ -213,6 +225,7 @@ export class GameRoom extends DurableObject {
         session.joined = true;
         session.name = cleanText(payload.name || "Student", 28) || "Student";
         session.appearance = sanitizeAppearance(payload.appearance);
+        session.profile = sanitizeProfile(payload.profile);
         session.state = sanitizeState(payload.state);
         this.saveAttachment(ws, session);
 
@@ -243,6 +256,7 @@ export class GameRoom extends DurableObject {
           playerId: session.id,
           name: session.name,
           appearance: session.appearance,
+          profile: session.profile || sanitizeProfile({}),
           ...session.state
         }, ws);
         break;
@@ -253,6 +267,14 @@ export class GameRoom extends DurableObject {
         session.appearance = sanitizeAppearance(payload.appearance);
         this.saveAttachment(ws, session);
         this.broadcast("appearance_update", this.playerSnapshot(session), ws);
+        break;
+      }
+
+      case "profile_update": {
+        if (!session.joined) return;
+        session.profile = sanitizeProfile(payload.profile);
+        this.saveAttachment(ws, session);
+        this.broadcast("profile_update", this.playerSnapshot(session), ws);
         break;
       }
 
