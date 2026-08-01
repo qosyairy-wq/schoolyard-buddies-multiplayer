@@ -4,7 +4,7 @@
   "short_name": "Schoolyard Buddies",
   "description": "A family-friendly educational voxel RPG with exploration, learning activities and multiplayer.",
   "lang": "en-MY",
-  "start_url": "./?source=pwa&v=14.2.2",
+  "start_url": "./?source=pwa&v=14.2.3",
   "scope": "./",
   "display": "standalone",
   "display_override": [
