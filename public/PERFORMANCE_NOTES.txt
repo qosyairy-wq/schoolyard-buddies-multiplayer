@@ -1,0 +1,13 @@
+Schoolyard Buddies Mobile PWA v14.2.5
+
+Performance changes without reducing render resolution:
+- Full 3D world simulation and rendering sleeps during menu and Character Setup.
+- Character Setup keeps one active preview renderer and uses 20 FPS frame pacing on phones.
+- Hidden legacy/HUD preview WebGL contexts are no longer created during setup.
+- NPC, traffic, cloud and visual simulations use fixed mobile update cadences while the main scene can still render responsively.
+- Inventory and fitting-room preview canvases render only while their panels are visible.
+- Shadow DOM cards use CSS containment/content-visibility to reduce layout and paint work while scrolling.
+- Mobile UI audio initialization is deferred/disabled during setup to reduce first-tap latency.
+- Main renderer pixel ratio and scene visual resolution are not reduced by this patch.
+
+Upload all files in this folder to public/.
