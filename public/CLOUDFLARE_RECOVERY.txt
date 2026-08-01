@@ -1,0 +1,13 @@
+Schoolyard Buddies v14.4.1
+
+IMPORTANT: ERR_CONNECTION_REFUSED / DNS failure is a Cloudflare route issue, not an HTML issue.
+
+Cloudflare dashboard recovery:
+1. Workers & Pages > schoolyard-buddies-multiplayer-test.
+2. Deployments: confirm there is an active successful deployment. Roll back to the last successful version if the latest build failed.
+3. Settings > Domains & Routes. Enable the workers.dev route.
+4. Confirm the public URL is exactly the current Worker name plus your account subdomain.
+5. Open the public URL in a private browser window before testing the PWA.
+6. Only after the URL opens, remove/reinstall the iPhone PWA to clear the cached offline copy.
+
+Mobile multiplayer now times out after 9 seconds and offers Continue Local Game instead of loading forever.
