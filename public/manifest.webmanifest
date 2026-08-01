@@ -1,10 +1,10 @@
 {
-  "id": "./?app=schoolyard-buddies-v14.3.2",
+  "id": "./?app=schoolyard-buddies-v14.3.3",
   "name": "Schoolyard Buddies: Quest for Knowledge",
   "short_name": "Schoolyard Buddies",
   "description": "A family-friendly educational voxel RPG with a lightweight mobile launcher.",
   "lang": "en-MY",
-  "start_url": "./?source=pwa&v=14.3.2",
+  "start_url": "./?source=pwa&v=14.3.3",
   "scope": "./",
   "display": "standalone",
   "display_override": [
